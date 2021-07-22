@@ -103,7 +103,7 @@ namespace ParkingSystem5Team
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(148, 52);
             this.btnCancel.TabIndex = 9;
-            this.btnCancel.Text = "취소";
+            this.btnCancel.Text = "닫기";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 

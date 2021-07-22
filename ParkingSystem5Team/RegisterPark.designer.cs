@@ -30,6 +30,11 @@ namespace ParkingSystem5Team
         private void InitializeComponent()
         {
             this.RegisterMember = new System.Windows.Forms.ListView();
+            this.CarNumberList = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.NameList = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PhoneNumberList = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.StartDateList = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.EndDateList = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.CarNumber3Text = new System.Windows.Forms.TextBox();
             this.CarNumberLabel = new System.Windows.Forms.Label();
             this.Car = new System.Windows.Forms.Label();
@@ -48,11 +53,6 @@ namespace ParkingSystem5Team
             this.StartDateLabel = new System.Windows.Forms.Label();
             this.StartDatePick = new System.Windows.Forms.DateTimePicker();
             this.EndDatePick = new System.Windows.Forms.DateTimePicker();
-            this.CarNumberList = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.NameList = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.PhoneNumberList = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.StartDateList = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.EndDateList = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.CancelBT = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -75,6 +75,31 @@ namespace ParkingSystem5Team
             this.RegisterMember.TabStop = false;
             this.RegisterMember.UseCompatibleStateImageBehavior = false;
             this.RegisterMember.View = System.Windows.Forms.View.Details;
+            // 
+            // CarNumberList
+            // 
+            this.CarNumberList.Text = "차량 번호";
+            this.CarNumberList.Width = 150;
+            // 
+            // NameList
+            // 
+            this.NameList.Text = "이름";
+            this.NameList.Width = 150;
+            // 
+            // PhoneNumberList
+            // 
+            this.PhoneNumberList.Text = "전화 번호";
+            this.PhoneNumberList.Width = 150;
+            // 
+            // StartDateList
+            // 
+            this.StartDateList.Text = "등록 날짜";
+            this.StartDateList.Width = 200;
+            // 
+            // EndDateList
+            // 
+            this.EndDateList.Text = "종료 날짜";
+            this.EndDateList.Width = 200;
             // 
             // CarNumber3Text
             // 
@@ -263,31 +288,6 @@ namespace ParkingSystem5Team
             this.EndDatePick.TabIndex = 21;
             this.EndDatePick.TabStop = false;
             // 
-            // CarNumberList
-            // 
-            this.CarNumberList.Text = "차량 번호";
-            this.CarNumberList.Width = 150;
-            // 
-            // NameList
-            // 
-            this.NameList.Text = "이름";
-            this.NameList.Width = 150;
-            // 
-            // PhoneNumberList
-            // 
-            this.PhoneNumberList.Text = "전화 번호";
-            this.PhoneNumberList.Width = 150;
-            // 
-            // StartDateList
-            // 
-            this.StartDateList.Text = "등록 날짜";
-            this.StartDateList.Width = 200;
-            // 
-            // EndDateList
-            // 
-            this.EndDateList.Text = "종료 날짜";
-            this.EndDateList.Width = 200;
-            // 
             // CancelBT
             // 
             this.CancelBT.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -295,7 +295,7 @@ namespace ParkingSystem5Team
             this.CancelBT.Name = "CancelBT";
             this.CancelBT.Size = new System.Drawing.Size(133, 59);
             this.CancelBT.TabIndex = 12;
-            this.CancelBT.Text = "취소";
+            this.CancelBT.Text = "닫기";
             this.CancelBT.UseVisualStyleBackColor = true;
             this.CancelBT.Click += new System.EventHandler(this.CancelBT_Click);
             // 

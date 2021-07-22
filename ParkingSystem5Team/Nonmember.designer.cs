@@ -97,8 +97,8 @@ namespace ParkingSystem5Team
             // 
             // nonmemberlist
             // 
-            this.nonmemberlist.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.nonmemberlist.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.nonmemberlist.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.차량번호,
@@ -279,7 +279,7 @@ namespace ParkingSystem5Team
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(148, 52);
             this.btnCancel.TabIndex = 7;
-            this.btnCancel.Text = "취소";
+            this.btnCancel.Text = "닫기";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 

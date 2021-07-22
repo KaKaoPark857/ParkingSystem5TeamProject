@@ -69,7 +69,6 @@ namespace ParkingSystem5Team
 
                 if ((ReMonNum * 1000) + (ReDayNum * 100) + (ReHourNum * 10) + ReMinNum >= (NowMonNum * 1000) + (NowDayNum * 100) + (NowHourNum * 10) + NowMinNum)
                 {
-
                     MessageBox.Show("예약이 완료 되었습니다.");
 
                     if ((ReHourNum + 5) < 24)
@@ -95,7 +94,7 @@ namespace ParkingSystem5Team
                     }
                     MessageBox.Show("예약 종료 시간은 " + EndTime.Text + "입니다.");
 
-                      string dirPath = @"C:\ParkingSystem\Reservation";
+                    string dirPath = @"C:\ParkingSystem\Reservation";
                     Directory.CreateDirectory(dirPath);
                     StreamWriter sw = new StreamWriter(new FileStream(dirPath + @"\"+CarNum.Text+"_Reservation_"+DateTime.Now.ToString("yyyy/MM/dd") + ".csv", FileMode.Create)
                         , System.Text.Encoding.UTF8);
@@ -128,9 +127,6 @@ namespace ParkingSystem5Team
                     sw.Write(data[1, 2] + "\t");
                     sw.Write(data[1, 3] + "\t");
                     sw.Write(data[1, 4]);
-
-
-
 
                     sw.Close();
                     notifyIcon1.Visible = true; // tray icon 표시
@@ -197,9 +193,7 @@ namespace ParkingSystem5Team
 
         private void CarInbtn_Click(object sender, EventArgs e)
         {
-           
             Application.ExitThread();
-        
         }
 
         private void reservation_Resize(object sender, EventArgs e)
