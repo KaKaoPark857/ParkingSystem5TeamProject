@@ -243,7 +243,6 @@ namespace ParkingSystem5Team
             this.t1.Text = "1";
             this.t1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.t1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.t_MouseClick);
-            this.t1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.t_MouseDoubleClick);
             this.t1.MouseHover += new System.EventHandler(this.t_MouseHover);
             // 
             // A1
@@ -298,7 +297,6 @@ namespace ParkingSystem5Team
             this.t2.Text = "2";
             this.t2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.t2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.t1_MouseClick);
-            this.t2.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.t1_MouseDoubleClick);
             this.t2.MouseHover += new System.EventHandler(this.t1_MouseHover);
             // 
             // t3
@@ -317,7 +315,6 @@ namespace ParkingSystem5Team
             this.t3.Text = "3";
             this.t3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.t3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.t2_MouseClick);
-            this.t3.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.t2_MouseDoubleClick);
             this.t3.MouseHover += new System.EventHandler(this.t2_MouseHover);
             // 
             // t4
@@ -336,7 +333,6 @@ namespace ParkingSystem5Team
             this.t4.Text = "4";
             this.t4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.t4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.t3_MouseClick);
-            this.t4.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.t3_MouseDoubleClick);
             this.t4.MouseHover += new System.EventHandler(this.t3_MouseHover);
             // 
             // t5
@@ -355,7 +351,6 @@ namespace ParkingSystem5Team
             this.t5.Text = "5";
             this.t5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.t5.MouseClick += new System.Windows.Forms.MouseEventHandler(this.t4_MouseClick);
-            this.t5.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.t4_MouseDoubleClick);
             this.t5.MouseHover += new System.EventHandler(this.t4_MouseHover);
             // 
             // t6
@@ -374,7 +369,6 @@ namespace ParkingSystem5Team
             this.t6.Text = "6";
             this.t6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.t6.MouseClick += new System.Windows.Forms.MouseEventHandler(this.t5_MouseClick);
-            this.t6.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.t5_MouseDoubleClick);
             this.t6.MouseHover += new System.EventHandler(this.t5_MouseHover);
             // 
             // t7
@@ -393,7 +387,6 @@ namespace ParkingSystem5Team
             this.t7.Text = "7";
             this.t7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.t7.MouseClick += new System.Windows.Forms.MouseEventHandler(this.t6_MouseClick);
-            this.t7.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.t6_MouseDoubleClick);
             this.t7.MouseHover += new System.EventHandler(this.t6_MouseHover);
             // 
             // t8
@@ -412,7 +405,6 @@ namespace ParkingSystem5Team
             this.t8.Text = "8";
             this.t8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.t8.MouseClick += new System.Windows.Forms.MouseEventHandler(this.t7_MouseClick);
-            this.t8.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.t7_MouseDoubleClick);
             this.t8.MouseHover += new System.EventHandler(this.t7_MouseHover);
             // 
             // t9
@@ -431,7 +423,6 @@ namespace ParkingSystem5Team
             this.t9.Text = "9";
             this.t9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.t9.MouseClick += new System.Windows.Forms.MouseEventHandler(this.t8_MouseClick);
-            this.t9.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.t8_MouseDoubleClick);
             this.t9.MouseHover += new System.EventHandler(this.t8_MouseHover);
             // 
             // t10
@@ -450,7 +441,6 @@ namespace ParkingSystem5Team
             this.t10.Text = "10";
             this.t10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.t10.MouseClick += new System.Windows.Forms.MouseEventHandler(this.t9_MouseClick);
-            this.t10.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.t9_MouseDoubleClick);
             this.t10.MouseHover += new System.EventHandler(this.t9_MouseHover);
             // 
             // t11
@@ -469,7 +459,6 @@ namespace ParkingSystem5Team
             this.t11.Text = "11";
             this.t11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.t11.MouseClick += new System.Windows.Forms.MouseEventHandler(this.t10_MouseClick);
-            this.t11.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.t10_MouseDoubleClick);
             this.t11.MouseHover += new System.EventHandler(this.t10_MouseHover);
             // 
             // t12
@@ -488,7 +477,6 @@ namespace ParkingSystem5Team
             this.t12.Text = "12";
             this.t12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.t12.MouseClick += new System.Windows.Forms.MouseEventHandler(this.t11_MouseClick);
-            this.t12.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.t11_MouseDoubleClick);
             this.t12.MouseHover += new System.EventHandler(this.t11_MouseHover);
             // 
             // t13
@@ -507,7 +495,6 @@ namespace ParkingSystem5Team
             this.t13.Text = "13";
             this.t13.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.t13.MouseClick += new System.Windows.Forms.MouseEventHandler(this.t12_MouseClick);
-            this.t13.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.t12_MouseDoubleClick);
             this.t13.MouseHover += new System.EventHandler(this.t12_MouseHover);
             // 
             // t14
@@ -526,7 +513,6 @@ namespace ParkingSystem5Team
             this.t14.Text = "14";
             this.t14.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.t14.MouseClick += new System.Windows.Forms.MouseEventHandler(this.t13_MouseClick);
-            this.t14.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.t13_MouseDoubleClick);
             this.t14.MouseHover += new System.EventHandler(this.t13_MouseHover);
             // 
             // t15
@@ -545,7 +531,6 @@ namespace ParkingSystem5Team
             this.t15.Text = "15";
             this.t15.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.t15.MouseClick += new System.Windows.Forms.MouseEventHandler(this.t14_MouseClick);
-            this.t15.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.t14_MouseDoubleClick);
             this.t15.MouseHover += new System.EventHandler(this.t14_MouseHover);
             // 
             // t16
@@ -564,7 +549,6 @@ namespace ParkingSystem5Team
             this.t16.Text = "16";
             this.t16.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.t16.MouseClick += new System.Windows.Forms.MouseEventHandler(this.t15_MouseClick);
-            this.t16.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.t15_MouseDoubleClick);
             this.t16.MouseHover += new System.EventHandler(this.t15_MouseHover);
             // 
             // t17
@@ -583,7 +567,6 @@ namespace ParkingSystem5Team
             this.t17.Text = "17";
             this.t17.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.t17.MouseClick += new System.Windows.Forms.MouseEventHandler(this.t16_MouseClick);
-            this.t17.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.t16_MouseDoubleClick);
             this.t17.MouseHover += new System.EventHandler(this.t16_MouseHover);
             // 
             // t18
@@ -602,7 +585,6 @@ namespace ParkingSystem5Team
             this.t18.Text = "18";
             this.t18.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.t18.MouseClick += new System.Windows.Forms.MouseEventHandler(this.t17_MouseClick);
-            this.t18.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.t17_MouseDoubleClick);
             this.t18.MouseHover += new System.EventHandler(this.t17_MouseHover);
             // 
             // t19
@@ -621,7 +603,6 @@ namespace ParkingSystem5Team
             this.t19.Text = "19";
             this.t19.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.t19.MouseClick += new System.Windows.Forms.MouseEventHandler(this.t18_MouseClick);
-            this.t19.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.t18_MouseDoubleClick);
             this.t19.MouseHover += new System.EventHandler(this.t18_MouseHover);
             // 
             // t20
@@ -640,7 +621,6 @@ namespace ParkingSystem5Team
             this.t20.Text = "20";
             this.t20.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.t20.MouseClick += new System.Windows.Forms.MouseEventHandler(this.t19_MouseClick);
-            this.t20.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.t19_MouseDoubleClick);
             this.t20.MouseHover += new System.EventHandler(this.t19_MouseHover);
             // 
             // t21
@@ -659,7 +639,6 @@ namespace ParkingSystem5Team
             this.t21.Text = "21";
             this.t21.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.t21.MouseClick += new System.Windows.Forms.MouseEventHandler(this.t20_MouseClick);
-            this.t21.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.t20_MouseDoubleClick);
             this.t21.MouseHover += new System.EventHandler(this.t20_MouseHover);
             // 
             // t22
@@ -678,7 +657,6 @@ namespace ParkingSystem5Team
             this.t22.Text = "22";
             this.t22.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.t22.MouseClick += new System.Windows.Forms.MouseEventHandler(this.t21_MouseClick);
-            this.t22.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.t21_MouseDoubleClick);
             this.t22.MouseHover += new System.EventHandler(this.t21_MouseHover);
             // 
             // t23
@@ -697,7 +675,6 @@ namespace ParkingSystem5Team
             this.t23.Text = "23";
             this.t23.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.t23.MouseClick += new System.Windows.Forms.MouseEventHandler(this.t22_MouseClick);
-            this.t23.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.t22_MouseDoubleClick);
             this.t23.MouseHover += new System.EventHandler(this.t22_MouseHover);
             // 
             // t24
@@ -716,7 +693,6 @@ namespace ParkingSystem5Team
             this.t24.Text = "24";
             this.t24.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.t24.MouseClick += new System.Windows.Forms.MouseEventHandler(this.t23_MouseClick);
-            this.t24.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.t23_MouseDoubleClick);
             this.t24.MouseHover += new System.EventHandler(this.t23_MouseHover);
             // 
             // t25
@@ -735,7 +711,6 @@ namespace ParkingSystem5Team
             this.t25.Text = "25";
             this.t25.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.t25.MouseClick += new System.Windows.Forms.MouseEventHandler(this.t24_MouseClick);
-            this.t25.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.t24_MouseDoubleClick);
             this.t25.MouseHover += new System.EventHandler(this.t24_MouseHover);
             // 
             // t26
@@ -754,7 +729,6 @@ namespace ParkingSystem5Team
             this.t26.Text = "26";
             this.t26.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.t26.MouseClick += new System.Windows.Forms.MouseEventHandler(this.t25_MouseClick);
-            this.t26.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.t25_MouseDoubleClick);
             this.t26.MouseHover += new System.EventHandler(this.t25_MouseHover);
             // 
             // t27
@@ -773,7 +747,6 @@ namespace ParkingSystem5Team
             this.t27.Text = "27";
             this.t27.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.t27.MouseClick += new System.Windows.Forms.MouseEventHandler(this.t26_MouseClick);
-            this.t27.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.t26_MouseDoubleClick);
             this.t27.MouseHover += new System.EventHandler(this.t26_MouseHover);
             // 
             // t28
@@ -792,7 +765,6 @@ namespace ParkingSystem5Team
             this.t28.Text = "28";
             this.t28.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.t28.MouseClick += new System.Windows.Forms.MouseEventHandler(this.t27_MouseClick);
-            this.t28.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.t27_MouseDoubleClick);
             this.t28.MouseHover += new System.EventHandler(this.t27_MouseHover);
             // 
             // A2

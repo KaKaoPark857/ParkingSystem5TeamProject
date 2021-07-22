@@ -127,7 +127,6 @@ namespace ParkingSystem5Team
                     cn2 = txtCarNumber.Text.Substring(3, 1);
                     cn3 = txtCarNumber.Text.Substring(4, 4);
                     ph = Phonestr[j];
-                    
                     Mem.ShowDialog();
                     Mem.Dispose();
                 }
@@ -149,9 +148,21 @@ namespace ParkingSystem5Team
         }
         private void t_MouseClick(object sender, MouseEventArgs e) 
         {
+            
             strCompare(); //얘만 추가하면됨
             //t_MouseDoubleClick(sender, e);
             if (txtCarNumber.Text != t1.Text && A1.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+
+            
+            //실수로 인한 잘못누름으로 취소 출차 안했는데 출차된거 표시 예외 처리 마지막에
+            else if (txtCarNumber.Text == t1.Text)
+            {
+                Blue();
+                A1.Visible = false;
+                PA1.Visible = true;
+                txtCarNumber.Text = t1.Text;
+                t1.Text = "1";
+            }
             else
             {
                 t1.Text = txtCarNumber.Text;
@@ -178,33 +189,19 @@ namespace ParkingSystem5Team
 
             }
         }
-
-        private void t_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Blue();
-            A1.Visible = false;
-            PA1.Visible = true;
-            txtCarNumber.Text = t1.Text;
-            t1.Text = "1";
-        }
-
-        private void t_MouseHover(object sender, EventArgs e)
-        {
-            White();
-            if (A1.Visible == true)
-            {
-                RedBox.BackColor = Color.Red;
-            }
-            else if (A1.Visible == false)
-            {
-                BlueBox.BackColor = Color.Blue;
-            }          
-        }
-
+  
         private void t1_MouseClick(object sender, MouseEventArgs e) 
         {
             strCompare();
             if (txtCarNumber.Text != t2.Text && A2.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            else if (txtCarNumber.Text == t2.Text)
+            {
+                Blue();
+                A2.Visible = false;
+                PA2.Visible = true;
+                txtCarNumber.Text = t2.Text;
+                t2.Text = "2";
+            }
             else
             {
                 t2.Text = txtCarNumber.Text;
@@ -231,20 +228,18 @@ namespace ParkingSystem5Team
             }
         }
 
-        private void t1_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Blue();
-            A2.Visible = false;
-            PA2.Visible = true;
-            txtCarNumber.Text = t2.Text;
-            t2.Text = "2";
-            
-        }
-
         private void t2_MouseClick(object sender, MouseEventArgs e) 
         {
             strCompare();
             if (txtCarNumber.Text != t3.Text && A3.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            else if (txtCarNumber.Text == t3.Text)
+            {
+                Blue();
+                A3.Visible = false;
+                PA3.Visible = true;
+                txtCarNumber.Text = t3.Text;
+                t3.Text = "3";
+            }
             else
             {
                 t3.Text = txtCarNumber.Text;
@@ -271,20 +266,18 @@ namespace ParkingSystem5Team
             }
         }
 
-        private void t2_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Blue();
-            A3.Visible = false;
-            PA3.Visible = true;
-            txtCarNumber.Text = t3.Text;
-            t3.Text = "3";
-            
-        }
-
         private void t3_MouseClick(object sender, MouseEventArgs e) 
         {
             strCompare();
             if (txtCarNumber.Text != t4.Text && A4.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            else if (txtCarNumber.Text == t4.Text)
+            {
+                Blue();
+                A4.Visible = false;
+                PA4.Visible = true;
+                txtCarNumber.Text = t4.Text;
+                t4.Text = "4";
+            }
             else
             {
                 t4.Text = txtCarNumber.Text;
@@ -311,19 +304,18 @@ namespace ParkingSystem5Team
             }
         }
 
-        private void t3_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Blue();
-            A4.Visible = false;
-            PA4.Visible = true;
-            txtCarNumber.Text = t4.Text;
-            t4.Text = "4";
-        }
-
         private void t4_MouseClick(object sender, MouseEventArgs e) 
         {
             strCompare();
             if (txtCarNumber.Text != t5.Text && A5.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            else if (txtCarNumber.Text == t5.Text)
+            {
+                Blue();
+                A5.Visible = false;
+                PA5.Visible = true;
+                txtCarNumber.Text = t5.Text;
+                t5.Text = "5";
+            }
             else
             {
                 t5.Text = txtCarNumber.Text;
@@ -349,19 +341,18 @@ namespace ParkingSystem5Team
             }
         }
 
-        private void t4_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Blue();
-            A5.Visible = false;
-            PA5.Visible = true;
-            txtCarNumber.Text = t5.Text;
-            t5.Text = "5";
-        }
-
         private void t5_MouseClick(object sender, MouseEventArgs e)
         {
             strCompare();
             if (txtCarNumber.Text != t6.Text && A6.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            else if (txtCarNumber.Text == t6.Text)
+            {
+                Blue();
+                A6.Visible = false;
+                PA6.Visible = true;
+                txtCarNumber.Text = t6.Text;
+                t6.Text = "6";
+            }
             else
             {
                 t6.Text = txtCarNumber.Text;
@@ -389,18 +380,18 @@ namespace ParkingSystem5Team
             }
         }
 
-        private void t5_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Blue();
-            A6.Visible = false;
-            PA6.Visible = true;
-            txtCarNumber.Text = t6.Text;
-            t6.Text = "6"; 
-        }
         private void t6_MouseClick(object sender, MouseEventArgs e)
         {
             strCompare();
             if (txtCarNumber.Text != t7.Text && A7.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            else if (txtCarNumber.Text == t7.Text)
+            {
+                Blue();
+                A7.Visible = false;
+                PA7.Visible = true;
+                txtCarNumber.Text = t7.Text;
+                t7.Text = "7";
+            }
             else
             {
                 t7.Text = txtCarNumber.Text;
@@ -426,19 +417,18 @@ namespace ParkingSystem5Team
             }
         }
 
-        private void t6_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Blue();
-            A7.Visible = false;
-            PA7.Visible = true;
-            txtCarNumber.Text = t7.Text;
-            t7.Text = "7";
-        }
-
         private void t7_MouseClick(object sender, MouseEventArgs e)
         {
             strCompare();
             if (txtCarNumber.Text != t8.Text && B1.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            else if (txtCarNumber.Text == t8.Text)
+            {
+                Blue();
+                B1.Visible = false;
+                PB1.Visible = true;
+                txtCarNumber.Text = t8.Text;
+                t8.Text = "8";
+            }
             else
             {
                 t8.Text = txtCarNumber.Text;
@@ -464,19 +454,18 @@ namespace ParkingSystem5Team
             }
         }
 
-        private void t7_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Blue();
-            B1.Visible = false;
-            PB1.Visible = true;
-            txtCarNumber.Text = t8.Text;
-            t8.Text = "8";
-        }
-
         private void t8_MouseClick(object sender, MouseEventArgs e)
         {
             strCompare();
             if (txtCarNumber.Text != t9.Text && B2.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            else if (txtCarNumber.Text == t9.Text)
+            {
+                Blue();
+                B2.Visible = false;
+                PB2.Visible = true;
+                txtCarNumber.Text = t9.Text;
+                t9.Text = "9";
+            }
             else
             {
                 t9.Text = txtCarNumber.Text;
@@ -502,19 +491,18 @@ namespace ParkingSystem5Team
             }
         }
 
-        private void t8_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Blue();
-            B2.Visible = false;
-            PB2.Visible = true;
-            txtCarNumber.Text = t9.Text;
-            t9.Text = "9";
-        }
-
         private void t9_MouseClick(object sender, MouseEventArgs e) 
         {
             strCompare();
             if (txtCarNumber.Text != t10.Text && B3.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            else if (txtCarNumber.Text == t10.Text)
+            {
+                Blue();
+                B3.Visible = false;
+                PB3.Visible = true;
+                txtCarNumber.Text = t10.Text;
+                t10.Text = "10";
+            }
             else
             {
                 t10.Text = txtCarNumber.Text;
@@ -540,19 +528,18 @@ namespace ParkingSystem5Team
             }
         }
 
-        private void t9_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Blue();
-            B3.Visible = false;
-            PB3.Visible = true;
-            txtCarNumber.Text = t10.Text;
-            t10.Text = "10";
-        }
-
         private void t10_MouseClick(object sender, MouseEventArgs e) 
         {
             strCompare();
             if (txtCarNumber.Text != t11.Text && B4.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            else if (txtCarNumber.Text == t11.Text)
+            {
+                Blue();
+                B4.Visible = false;
+                PB4.Visible = true;
+                txtCarNumber.Text = t11.Text;
+                t11.Text = "11";
+            }
             else
             {
                 t11.Text = txtCarNumber.Text;
@@ -578,19 +565,18 @@ namespace ParkingSystem5Team
             }
         }
 
-        private void t10_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Blue();
-            B4.Visible = false;
-            PB4.Visible = true;
-            txtCarNumber.Text = t11.Text;
-            t11.Text = "11";
-        }
-
         private void t11_MouseClick(object sender, MouseEventArgs e) 
         {
             strCompare();
             if (txtCarNumber.Text != t12.Text && B5.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            else if (txtCarNumber.Text == t12.Text)
+            {
+                Blue();
+                B5.Visible = false;
+                PB5.Visible = true;
+                txtCarNumber.Text = t12.Text;
+                t12.Text = "12";
+            }
             else
             {
                 t12.Text = txtCarNumber.Text;
@@ -616,19 +602,18 @@ namespace ParkingSystem5Team
             }
         }
 
-        private void t11_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Blue();
-            B5.Visible = false;
-            PB5.Visible = true;
-            txtCarNumber.Text = t12.Text;
-            t12.Text = "12";
-        }
-
         private void t12_MouseClick(object sender, MouseEventArgs e) 
         {
             strCompare();
             if (txtCarNumber.Text != t13.Text && B6.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            else if (txtCarNumber.Text == t13.Text)
+            {
+                Blue();
+                B6.Visible = false;
+                PB6.Visible = true;
+                txtCarNumber.Text = t13.Text;
+                t13.Text = "13";
+            }
             else
             {
                 t13.Text = txtCarNumber.Text;
@@ -654,19 +639,18 @@ namespace ParkingSystem5Team
             }
         }
 
-        private void t12_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Blue();
-            B6.Visible = false;
-            PB6.Visible = true;
-            txtCarNumber.Text = t13.Text;
-            t13.Text = "13";
-        }
-
         private void t13_MouseClick(object sender, MouseEventArgs e) 
         {
             strCompare();
             if (txtCarNumber.Text != t14.Text && B7.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            else if (txtCarNumber.Text == t14.Text)
+            {
+                Blue();
+                B7.Visible = false;
+                PB7.Visible = true;
+                txtCarNumber.Text = t14.Text;
+                t14.Text = "14";
+            }
             else
             {
                 t14.Text = txtCarNumber.Text;
@@ -692,19 +676,18 @@ namespace ParkingSystem5Team
             }
         }
 
-        private void t13_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Blue();
-            B7.Visible = false;
-            PB7.Visible = true;
-            txtCarNumber.Text = t14.Text;
-            t14.Text = "14";
-        }
-
         private void t14_MouseClick(object sender, MouseEventArgs e) 
         {
             strCompare();
             if (txtCarNumber.Text != t15.Text && C1.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            else if (txtCarNumber.Text == t15.Text)
+            {
+                Blue();
+                C1.Visible = false;
+                PC1.Visible = true;
+                txtCarNumber.Text = t16.Text;
+                t15.Text = "15";
+            }
             else
             {
                 t15.Text = txtCarNumber.Text;
@@ -730,19 +713,18 @@ namespace ParkingSystem5Team
             }
         }
 
-        private void t14_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Blue();
-            C1.Visible = false;
-            PC1.Visible = true;
-            txtCarNumber.Text = t16.Text;
-            t15.Text = "15";
-        }
-
         private void t15_MouseClick(object sender, MouseEventArgs e)
         {
             strCompare();
             if (txtCarNumber.Text != t16.Text && C2.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            else if (txtCarNumber.Text == t16.Text)
+            {
+                Blue();
+                C2.Visible = false;
+                PC2.Visible = true;
+                txtCarNumber.Text = t16.Text;
+                t16.Text = "16";
+            }
             else
             {
                 t16.Text = txtCarNumber.Text;
@@ -768,19 +750,18 @@ namespace ParkingSystem5Team
             }
         }
 
-        private void t15_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Blue();
-            C2.Visible = false;
-            PC2.Visible = true;
-            txtCarNumber.Text = t16.Text;
-            t16.Text = "16";
-        }
-
         private void t16_MouseClick(object sender, MouseEventArgs e)
         {
             strCompare();
             if (txtCarNumber.Text != t17.Text && C3.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            else if (txtCarNumber.Text == t17.Text)
+            {
+                Blue();
+                C3.Visible = false;
+                PC3.Visible = true;
+                txtCarNumber.Text = t17.Text;
+                t17.Text = "17";
+            }
             else
             {
                 t17.Text = txtCarNumber.Text;
@@ -806,19 +787,18 @@ namespace ParkingSystem5Team
             }
         }
 
-        private void t16_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Blue();
-            C3.Visible = false;
-            PC3.Visible = true;
-            txtCarNumber.Text = t17.Text;
-            t17.Text = "17";
-        }
-
         private void t17_MouseClick(object sender, MouseEventArgs e) 
         {
             strCompare();
             if (txtCarNumber.Text != t18.Text && C4.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            else if (txtCarNumber.Text == t18.Text)
+            {
+                Blue();
+                C4.Visible = false;
+                PC4.Visible = true;
+                txtCarNumber.Text = t18.Text;
+                t18.Text = "18";
+            }
             else
             {
                 t18.Text = txtCarNumber.Text;
@@ -844,19 +824,18 @@ namespace ParkingSystem5Team
             }
         }
 
-        private void t17_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Blue();
-            C4.Visible = false;
-            PC4.Visible = true;
-            txtCarNumber.Text = t18.Text;
-            t18.Text = "18";
-        }
-
         private void t18_MouseClick(object sender, MouseEventArgs e)
         {
             strCompare();
             if (txtCarNumber.Text != t19.Text && C5.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            else if (txtCarNumber.Text == t19.Text)
+            {
+                Blue();
+                C5.Visible = false;
+                PC5.Visible = true;
+                txtCarNumber.Text = t19.Text;
+                t19.Text = "19";
+            }
             else
             {
                 t19.Text = txtCarNumber.Text;
@@ -882,19 +861,18 @@ namespace ParkingSystem5Team
             }
         }
 
-        private void t18_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Blue();
-            C5.Visible = false;
-            PC5.Visible = true;
-            txtCarNumber.Text = t19.Text;
-            t19.Text = "19";
-        }
-
         private void t19_MouseClick(object sender, MouseEventArgs e)
         {
             strCompare();
             if (txtCarNumber.Text != t20.Text && C6.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            else if (txtCarNumber.Text == t20.Text)
+            {
+                Blue();
+                C6.Visible = false;
+                PC6.Visible = true;
+                txtCarNumber.Text = t20.Text;
+                t20.Text = "20";
+            }
             else
             {
                 t20.Text = txtCarNumber.Text;
@@ -920,19 +898,18 @@ namespace ParkingSystem5Team
             }
         }
 
-        private void t19_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Blue();
-            C6.Visible = false;
-            PC6.Visible = true;
-            txtCarNumber.Text = t20.Text;
-            t20.Text = "20";
-        }
-
         private void t20_MouseClick(object sender, MouseEventArgs e)
         {
             strCompare();
             if (txtCarNumber.Text != t21.Text && C7.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            else if (txtCarNumber.Text == t21.Text)
+            {
+                Blue();
+                C7.Visible = false;
+                PC7.Visible = true;
+                txtCarNumber.Text = t21.Text;
+                t21.Text = "21";
+            }
             else
             {
                 t21.Text = txtCarNumber.Text;
@@ -958,19 +935,18 @@ namespace ParkingSystem5Team
             }
         }
 
-        private void t20_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Blue();
-            C7.Visible = false;
-            PC7.Visible = true;
-            txtCarNumber.Text = t21.Text;
-            t21.Text = "21";
-        }
-
         private void t21_MouseClick(object sender, MouseEventArgs e) 
         {
             strCompare();
             if (txtCarNumber.Text != t22.Text && D1.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            else if (txtCarNumber.Text == t22.Text)
+            {
+                Blue();
+                D1.Visible = false;
+                PD1.Visible = true;
+                txtCarNumber.Text = t22.Text;
+                t22.Text = "22";
+            }
             else
             {
                 t22.Text = txtCarNumber.Text;
@@ -996,19 +972,18 @@ namespace ParkingSystem5Team
             }
         }
 
-        private void t21_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Blue();
-            D1.Visible = false;
-            PD1.Visible = true;
-            txtCarNumber.Text = t22.Text;
-            t22.Text = "22";
-        }
-
         private void t22_MouseClick(object sender, MouseEventArgs e) 
         {
             strCompare();
             if (txtCarNumber.Text != t23.Text && D2.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            else if (txtCarNumber.Text == t23.Text)
+            {
+                Blue();
+                D2.Visible = false;
+                PD2.Visible = true;
+                txtCarNumber.Text = t23.Text;
+                t23.Text = "23";
+            }
             else
             {
                 t23.Text = txtCarNumber.Text;
@@ -1034,19 +1009,18 @@ namespace ParkingSystem5Team
             }
         }
 
-        private void t22_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Blue();
-            D2.Visible = false;
-            PD2.Visible = true;
-            txtCarNumber.Text = t23.Text;
-            t23.Text = "23";
-        }
-
         private void t23_MouseClick(object sender, MouseEventArgs e) 
         {
             strCompare();
             if (txtCarNumber.Text != t24.Text && D3.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            else if (txtCarNumber.Text == t24.Text)
+            {
+                Blue();
+                D3.Visible = false;
+                PD3.Visible = true;
+                txtCarNumber.Text = t24.Text;
+                t24.Text = "24";
+            }
             else
             {
                 t24.Text = txtCarNumber.Text;
@@ -1072,19 +1046,18 @@ namespace ParkingSystem5Team
             }
         }
 
-        private void t23_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Blue();
-            D3.Visible = false;
-            PD3.Visible = true;
-            txtCarNumber.Text = t24.Text;
-            t24.Text = "24";
-        }
-
         private void t24_MouseClick(object sender, MouseEventArgs e)
         {
             strCompare();
             if (txtCarNumber.Text != t25.Text && D4.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            else if (txtCarNumber.Text == t25.Text)
+            {
+                Blue();
+                D4.Visible = false;
+                PD4.Visible = true;
+                txtCarNumber.Text = t25.Text;
+                t25.Text = "25";
+            }
             else
             {
                 t25.Text = txtCarNumber.Text;
@@ -1110,19 +1083,18 @@ namespace ParkingSystem5Team
             }
         }
 
-        private void t24_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Blue();
-            D4.Visible = false;
-            PD4.Visible = true;
-            txtCarNumber.Text = t25.Text;
-            t25.Text = "25";
-        }
-
         private void t25_MouseClick(object sender, MouseEventArgs e)
         {
             strCompare();
             if (txtCarNumber.Text != t26.Text && D5.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            else if (txtCarNumber.Text == t26.Text)
+            {
+                Blue();
+                D5.Visible = false;
+                PD5.Visible = true;
+                txtCarNumber.Text = t26.Text;
+                t26.Text = "26";
+            }
             else
             {
                 t26.Text = txtCarNumber.Text;
@@ -1148,19 +1120,18 @@ namespace ParkingSystem5Team
             }
         }
 
-        private void t25_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Blue();
-            D5.Visible = false;
-            PD5.Visible = true;
-            txtCarNumber.Text = t26.Text;
-            t26.Text = "26";
-        }
-
         private void t26_MouseClick(object sender, MouseEventArgs e)
         {
             strCompare();
             if (txtCarNumber.Text != t27.Text && D6.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            else if (txtCarNumber.Text == t27.Text)
+            {
+                Blue();
+                D6.Visible = false;
+                PD6.Visible = true;
+                txtCarNumber.Text = t27.Text;
+                t27.Text = "27";
+            }
             else
             {
                 t27.Text = txtCarNumber.Text;
@@ -1186,19 +1157,18 @@ namespace ParkingSystem5Team
             }
         }
 
-        private void t26_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Blue();
-            D6.Visible = false;
-            PD6.Visible = true;
-            txtCarNumber.Text = t27.Text;
-            t27.Text = "27";
-        }
-
         private void t27_MouseClick(object sender, MouseEventArgs e)
         {
             strCompare();
             if (txtCarNumber.Text != t28.Text && D7.Visible == true || txtCarNumber.Text == "") MessageBox.Show("차량 번호를 입력해주세요.");
+            else if (txtCarNumber.Text == t28.Text)
+            {
+                Blue();
+                D7.Visible = false;
+                PD7.Visible = true;
+                txtCarNumber.Text = t28.Text;
+                t28.Text = "28";
+            }
             else
             {
                 t28.Text = txtCarNumber.Text;
@@ -1224,13 +1194,17 @@ namespace ParkingSystem5Team
             }
         }
 
-        private void t27_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void t_MouseHover(object sender, EventArgs e)
         {
-            Blue();
-            D7.Visible = false;
-            PD7.Visible = true;
-            txtCarNumber.Text = t28.Text;
-            t28.Text = "28";
+            White();
+            if (A1.Visible == true)
+            {
+                RedBox.BackColor = Color.Red;
+            }
+            else if (A1.Visible == false)
+            {
+                BlueBox.BackColor = Color.Blue;
+            }
         }
 
         private void t1_MouseHover(object sender, EventArgs e)
