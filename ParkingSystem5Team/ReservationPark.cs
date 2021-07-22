@@ -87,7 +87,7 @@ namespace ParkingSystem5Team
                     }
                     else
                     {
-                        ReHourNum = ReHourNum - 24;
+                        ReHourNum = (ReHourNum+5) - 24;
                         ReHour = "0" + ReHourNum;
                         ReDayNum = ReDayNum + 1;
 
@@ -168,19 +168,23 @@ namespace ParkingSystem5Team
                 if (count == 1)
                 {
                     MessageBox.Show("예약 시간이 끝났습니다.\n주차장 자리를 반환합니다.");
-                string path = @"C:\ParkingSystem\Reservation" + CarNum.Text + "_Reservation_" + DateTime.Now.ToString("yyyy/MM/dd") + ".csv";
-                bool result = File.Exists(path);
+                    string path = @"C:\ParkingSystem\Reservation" + CarNum.Text + "_Reservation_" + DateTime.Now.ToString("yyyy/MM/dd") + ".csv";
+                    bool result = File.Exists(path);
                 if (result == true)
                 {
                     File.Delete(path);
+                    timer1.Stop();
+                    timer2.Stop();
+                    Close();
                 }
                 else
                 {
                     MessageBox.Show("존재 하지 않는 파일입니다.");
+
+                    timer1.Stop();
+                    timer2.Stop();
+                    Close();
                 }
-                timer1.Stop();
-                timer2.Stop();
-                Close();
                 }
             }
 

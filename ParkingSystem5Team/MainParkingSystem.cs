@@ -66,7 +66,6 @@ namespace ParkingSystem5Team
                     rese.Owner = this;
                     CarNum = txtCarNumber.Text;
                     rese.ShowDialog();
-                    rese.Dispose();
                 }
                 else
                 {
@@ -118,31 +117,39 @@ namespace ParkingSystem5Team
             Member Mem = new Member();
             Nonmember nonMem = new Nonmember();
 
+            int Compare = 0; //폰넘버 집어넣을 인덱스값을 찾기위한 정수형 변수
             for (int j = 1; j < i; j++)
             {
+               
                 if (txtCarNumber.Text == Carstr2[j])
                 {
-                    Mem.Owner = this;
-                    cn = txtCarNumber.Text.Substring(0, 3);
-                    cn2 = txtCarNumber.Text.Substring(3, 1);
-                    cn3 = txtCarNumber.Text.Substring(4, 4);
-                    ph = Phonestr[j];
-                    Mem.ShowDialog();
-                    Mem.Dispose();
+                    Compare = j;
+                    break;
                 }
-                
-                /*if (txtCarNumber.Text != Carstr2[j])
-                {
-                    nonMem.Owner = this;
-                    cn = txtCarNumber.Text.Substring(0, 3);
-                    cn2 = txtCarNumber.Text.Substring(3, 1);
-                    cn3 = txtCarNumber.Text.Substring(4, 4);
-                    nonMem.ShowDialog();
-                    nonMem.Dispose();
 
+                else
+                {
+                    Compare = 0;
                 }
-                
-                */
+            }
+            if (Compare != 0)
+            {
+                Mem.Owner = this;
+                cn = txtCarNumber.Text.Substring(0, 3);
+                cn2 = txtCarNumber.Text.Substring(3, 1);
+                cn3 = txtCarNumber.Text.Substring(4, 4);
+                ph = Phonestr[Compare];
+                Mem.ShowDialog();
+                Mem.Dispose();
+            }
+            else
+            {
+                nonMem.Owner = this;
+                cn = txtCarNumber.Text.Substring(0, 3);
+                cn2 = txtCarNumber.Text.Substring(3, 1);
+                cn3 = txtCarNumber.Text.Substring(4, 4);
+                nonMem.ShowDialog();
+                //nonMem.Dispose();
             }
 
         }
@@ -150,10 +157,8 @@ namespace ParkingSystem5Team
         {
             
             strCompare(); //얘만 추가하면됨
-            //t_MouseDoubleClick(sender, e);
-            if (txtCarNumber.Text != t1.Text && A1.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
-
             
+            if (txtCarNumber.Text != t1.Text && A1.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
             //실수로 인한 잘못누름으로 취소 출차 안했는데 출차된거 표시 예외 처리 마지막에
             else if (txtCarNumber.Text == t1.Text)
             {

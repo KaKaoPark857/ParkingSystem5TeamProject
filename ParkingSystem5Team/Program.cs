@@ -17,6 +17,7 @@ namespace ParkingSystem5Team
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainParkingSystem());
+            //Application.Run(new Nonmember());
         }
     }
 }

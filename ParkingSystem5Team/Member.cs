@@ -69,7 +69,7 @@ namespace ParkingSystem5Team
         }
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            Close() ;
+            Close();
         }
 
         private void btnSave_Click(object sender, EventArgs e)

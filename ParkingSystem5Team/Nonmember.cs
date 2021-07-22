@@ -14,7 +14,7 @@ namespace ParkingSystem5Team
     public partial class Nonmember : Form
     {
         public string intime, outtime;
-        Form1 mainForm = null;
+        MainParkingSystem mainForm = null;
         public Nonmember()
         {
             InitializeComponent();
@@ -46,8 +46,6 @@ namespace ParkingSystem5Team
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            /*this.DialogResult = DialogResult.Abort;
-            Application.Exit();*/
             Close();
         }
 
@@ -125,10 +123,10 @@ namespace ParkingSystem5Team
         }
         private void Nonmember_Load(object sender, EventArgs e)
         {
-            mainForm = (Form1)Owner;
-            tbCarNumber.Text = mainForm.carNumber;
-            tbCarNumber2.Text = mainForm.carNumber2;
-            tbCarNumber3.Text = mainForm.carNumber3;
+            mainForm = (MainParkingSystem)Owner;
+            tbCarNumber.Text = mainForm.cn;
+            tbCarNumber2.Text = mainForm.cn2;
+            tbCarNumber3.Text = mainForm.cn3;
         }
 
         private void btnOutCar_Click(object sender, EventArgs e)
@@ -141,7 +139,7 @@ namespace ParkingSystem5Team
             {
                 nonmemberlist.SelectedItems[0].SubItems[3].Text = tbOuttime.Text;
             }
-            catch (Exception exp)
+            catch (Exception)
             {
                 MessageBox.Show("리스트에서 차량을 선택해주세요.");
             }
