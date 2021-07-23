@@ -13,19 +13,33 @@ namespace ParkingSystem5Team
 {
     public partial class MainParkingSystem : Form
     { 
-        public string CarNum;
-        public string cn;
-        public string cn2;
-        public string cn3;
-        public string ph;        
+        public string CarNum; //합쳐진 차량번호
+        public string cn; //차량번호 앞자리
+        public string cn2; //차량번호 중간 자리
+        public string cn3; //차량번호 뒷자리
+        public string ph; //등록차량 핸드폰번호
 
+        public string resSpot; //예약 주차 자리 확인을 위한 변수
+
+        public string[] parkSpot = new string[28];
+
+        public void Reser()
+        {
+            TextBox[] tb = new TextBox[28] { t1, t2, t3, t4,t5, t6, t7, t8, t9, t10,
+            t11, t12, t13, t14,t15, t16, t17, t18, t19, t20, t21, t22, t23, t24, t25, t26, t27, t28};
+            for (int i = 0; i < 28; i++)
+            {
+                parkSpot[i] = tb[i].Text;
+            }
+        }
         public MainParkingSystem()
         {
             InitializeComponent();
         }
         public static string[] Carstr = new string[100];
-        private void btnReserve_Click(object sender, EventArgs e) //예약 버튼 눌렀을때
+        private void btnReserve_Click(object sender, EventArgs e) //예약 버튼 눌렀을때 이벤트
         {
+            Reser();
             if (File.Exists(@"C:\ParkingSystem\Register\Register.csv") == false)
             {
                 return;
@@ -72,27 +86,11 @@ namespace ParkingSystem5Team
                     MessageBox.Show("등록된 차량이 아닙니다.\n예약이 불가능합니다.");
                 }
             }
-
         }
-        private void Blue() //파란불
-        {
-            BlueBox.BackColor = Color.Blue;
-            RedBox.BackColor = Color.Black;
-        }
-        private void Red() //빨간불
-        {
-            RedBox.BackColor = Color.Red;
-            BlueBox.BackColor = Color.Black;
-        }
-        private void White() //default
-        {
-            BlueBox.BackColor = Color.Black;
-            RedBox.BackColor = Color.Black;
-        }
-
+        
         public static string[] Carstr2 = new string[100];
         public static string[] Phonestr = new string[100];
-        public void strCompare()
+        public void strCompare() //등록/미등록 차량 입출차 구분을 위한 조건문이 들어있는 함수
         {
             if (File.Exists(@"C:\ParkingSystem\Register\Register.csv") == false)
             {
@@ -120,13 +118,11 @@ namespace ParkingSystem5Team
             int Compare = 0; //폰넘버 집어넣을 인덱스값을 찾기위한 정수형 변수
             for (int j = 1; j < i; j++)
             {
-               
                 if (txtCarNumber.Text == Carstr2[j])
                 {
                     Compare = j;
                     break;
                 }
-
                 else
                 {
                     Compare = 0;
@@ -151,17 +147,52 @@ namespace ParkingSystem5Team
                 nonMem.ShowDialog();
                 //nonMem.Dispose();
             }
-
+        }
+        private void Blue() //파란불
+        {
+            BlueBox.BackColor = Color.Blue;
+            RedBox.BackColor = Color.Black;
+            YellowBox.BackColor = Color.Black;
+        }
+        private void Red() //빨간불
+        {
+            RedBox.BackColor = Color.Red;
+            BlueBox.BackColor = Color.Black;
+            YellowBox.BackColor = Color.Black;
+        }
+        private void Yellow() //노란불
+        {
+            RedBox.BackColor = Color.Black;
+            BlueBox.BackColor = Color.Black;
+            YellowBox.BackColor = Color.Yellow;
+        }
+        private void White() //default
+        {
+            BlueBox.BackColor = Color.Black;
+            RedBox.BackColor = Color.Black;
+            YellowBox.BackColor = Color.Black;
+        }
+        public void ReservationState() //예약 상태 확인을 위한 선언
+        {
+            reservation res = new reservation();
+            res.Owner = this;
+            res.Dispose();
         }
         private void t_MouseClick(object sender, MouseEventArgs e) 
         {
-            
-            strCompare(); //얘만 추가하면됨
-            
-            if (txtCarNumber.Text != t1.Text && A1.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
-            //실수로 인한 잘못누름으로 취소 출차 안했는데 출차된거 표시 예외 처리 마지막에
+            ReservationState();
+            if (resSpot == t1.Text)
+            {
+                MessageBox.Show("예약된 자리입니다.");
+                Yellow();
+            }
+            else if (txtCarNumber.Text != t1.Text && A1.Visible == true || txtCarNumber.Text == "")
+            {
+                MessageBox.Show("주차가 불가능합니다.");
+            }
             else if (txtCarNumber.Text == t1.Text)
             {
+                strCompare();
                 Blue();
                 A1.Visible = false;
                 PA1.Visible = true;
@@ -186,21 +217,26 @@ namespace ParkingSystem5Team
                 }
                 else
                 {
+                    strCompare();
                     Red();
                     A1.Visible = true;
                     PA1.Visible = false;
-
                 }
-
             }
         }
   
         private void t1_MouseClick(object sender, MouseEventArgs e) 
         {
-            strCompare();
-            if (txtCarNumber.Text != t2.Text && A2.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            ReservationState();
+            if (resSpot == t2.Text)
+            {
+                MessageBox.Show("예약된 자리입니다.");
+                Yellow();
+            }
+            else if (txtCarNumber.Text != t2.Text && A2.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
             else if (txtCarNumber.Text == t2.Text)
             {
+                strCompare();
                 Blue();
                 A2.Visible = false;
                 PA2.Visible = true;
@@ -225,6 +261,7 @@ namespace ParkingSystem5Team
                 }
                 else
                 {
+                    strCompare();
                     Red();
                     A2.Visible = true;
                     PA2.Visible = false;
@@ -235,10 +272,16 @@ namespace ParkingSystem5Team
 
         private void t2_MouseClick(object sender, MouseEventArgs e) 
         {
-            strCompare();
-            if (txtCarNumber.Text != t3.Text && A3.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            ReservationState();
+            if (resSpot == t3.Text)
+            {
+                MessageBox.Show("예약된 자리입니다.");
+                Yellow();
+            }
+            else if (txtCarNumber.Text != t3.Text && A3.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
             else if (txtCarNumber.Text == t3.Text)
             {
+                strCompare();
                 Blue();
                 A3.Visible = false;
                 PA3.Visible = true;
@@ -263,6 +306,7 @@ namespace ParkingSystem5Team
                 }
                 else
                 {
+                    strCompare();
                     Red();
                     A3.Visible = true;
                     PA3.Visible = false;
@@ -273,10 +317,16 @@ namespace ParkingSystem5Team
 
         private void t3_MouseClick(object sender, MouseEventArgs e) 
         {
-            strCompare();
-            if (txtCarNumber.Text != t4.Text && A4.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            ReservationState();
+            if (resSpot == t4.Text)
+            {
+                MessageBox.Show("예약된 자리입니다.");
+                Yellow();
+            }
+            else if (txtCarNumber.Text != t4.Text && A4.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
             else if (txtCarNumber.Text == t4.Text)
             {
+                strCompare();
                 Blue();
                 A4.Visible = false;
                 PA4.Visible = true;
@@ -301,6 +351,7 @@ namespace ParkingSystem5Team
                 }
                 else
                 {
+                    strCompare();
                     Red();
                     A4.Visible = true;
                     PA4.Visible = false;
@@ -311,10 +362,16 @@ namespace ParkingSystem5Team
 
         private void t4_MouseClick(object sender, MouseEventArgs e) 
         {
-            strCompare();
-            if (txtCarNumber.Text != t5.Text && A5.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            ReservationState();
+            if (resSpot == t5.Text)
+            {
+                MessageBox.Show("예약된 자리입니다.");
+                Yellow();
+            }
+            else if (txtCarNumber.Text != t5.Text && A5.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
             else if (txtCarNumber.Text == t5.Text)
             {
+                strCompare();
                 Blue();
                 A5.Visible = false;
                 PA5.Visible = true;
@@ -339,6 +396,7 @@ namespace ParkingSystem5Team
                 }
                 else
                 {
+                    strCompare();
                     Red();
                     A5.Visible = true;
                     PA5.Visible = false;
@@ -348,10 +406,16 @@ namespace ParkingSystem5Team
 
         private void t5_MouseClick(object sender, MouseEventArgs e)
         {
-            strCompare();
-            if (txtCarNumber.Text != t6.Text && A6.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            ReservationState();
+            if (resSpot == t6.Text)
+            {
+                MessageBox.Show("예약된 자리입니다.");
+                Yellow();
+            }
+            else if (txtCarNumber.Text != t6.Text && A6.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
             else if (txtCarNumber.Text == t6.Text)
             {
+                strCompare();
                 Blue();
                 A6.Visible = false;
                 PA6.Visible = true;
@@ -376,6 +440,7 @@ namespace ParkingSystem5Team
                 }
                 else
                 {
+                    strCompare();
                     Red();
                     A6.Visible = true;
                     PA6.Visible = false;
@@ -387,10 +452,16 @@ namespace ParkingSystem5Team
 
         private void t6_MouseClick(object sender, MouseEventArgs e)
         {
-            strCompare();
-            if (txtCarNumber.Text != t7.Text && A7.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            ReservationState();
+            if (resSpot == t7.Text)
+            {
+                MessageBox.Show("예약된 자리입니다.");
+                Yellow();
+            }
+            else if (txtCarNumber.Text != t7.Text && A7.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
             else if (txtCarNumber.Text == t7.Text)
             {
+                strCompare();
                 Blue();
                 A7.Visible = false;
                 PA7.Visible = true;
@@ -415,6 +486,7 @@ namespace ParkingSystem5Team
                 }
                 else
                 {
+                    strCompare();
                     Red();
                     A7.Visible = true;
                     PA7.Visible = false;
@@ -424,10 +496,16 @@ namespace ParkingSystem5Team
 
         private void t7_MouseClick(object sender, MouseEventArgs e)
         {
-            strCompare();
-            if (txtCarNumber.Text != t8.Text && B1.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            ReservationState();
+            if (resSpot == t8.Text)
+            {
+                MessageBox.Show("예약된 자리입니다.");
+                Yellow();
+            }
+            else if (txtCarNumber.Text != t8.Text && B1.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
             else if (txtCarNumber.Text == t8.Text)
             {
+                strCompare();
                 Blue();
                 B1.Visible = false;
                 PB1.Visible = true;
@@ -452,6 +530,7 @@ namespace ParkingSystem5Team
                 }
                 else
                 {
+                    strCompare();
                     Red();
                     B1.Visible = true;
                     PB1.Visible = false;
@@ -461,10 +540,16 @@ namespace ParkingSystem5Team
 
         private void t8_MouseClick(object sender, MouseEventArgs e)
         {
-            strCompare();
-            if (txtCarNumber.Text != t9.Text && B2.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            ReservationState();
+            if (resSpot == t9.Text)
+            {
+                MessageBox.Show("예약된 자리입니다.");
+                Yellow();
+            }
+            else if (txtCarNumber.Text != t9.Text && B2.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
             else if (txtCarNumber.Text == t9.Text)
             {
+                strCompare();
                 Blue();
                 B2.Visible = false;
                 PB2.Visible = true;
@@ -489,6 +574,7 @@ namespace ParkingSystem5Team
                 }
                 else
                 {
+                    strCompare();
                     Red();
                     B2.Visible = true;
                     PB2.Visible = false;
@@ -498,10 +584,16 @@ namespace ParkingSystem5Team
 
         private void t9_MouseClick(object sender, MouseEventArgs e) 
         {
-            strCompare();
-            if (txtCarNumber.Text != t10.Text && B3.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            ReservationState();
+            if (resSpot == t10.Text)
+            {
+                MessageBox.Show("예약된 자리입니다.");
+                Yellow();
+            }
+            else if (txtCarNumber.Text != t10.Text && B3.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
             else if (txtCarNumber.Text == t10.Text)
             {
+                strCompare();
                 Blue();
                 B3.Visible = false;
                 PB3.Visible = true;
@@ -526,6 +618,7 @@ namespace ParkingSystem5Team
                 }
                 else
                 {
+                    strCompare();
                     Red();
                     B3.Visible = true;
                     PB3.Visible = false;
@@ -535,10 +628,16 @@ namespace ParkingSystem5Team
 
         private void t10_MouseClick(object sender, MouseEventArgs e) 
         {
-            strCompare();
-            if (txtCarNumber.Text != t11.Text && B4.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            ReservationState();
+            if (resSpot == t11.Text)
+            {
+                MessageBox.Show("예약된 자리입니다.");
+                Yellow();
+            }
+            else if (txtCarNumber.Text != t11.Text && B4.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
             else if (txtCarNumber.Text == t11.Text)
             {
+                strCompare();
                 Blue();
                 B4.Visible = false;
                 PB4.Visible = true;
@@ -563,6 +662,7 @@ namespace ParkingSystem5Team
                 }
                 else
                 {
+                    strCompare();
                     Red();
                     B4.Visible = true;
                     PB4.Visible = false;
@@ -572,10 +672,16 @@ namespace ParkingSystem5Team
 
         private void t11_MouseClick(object sender, MouseEventArgs e) 
         {
-            strCompare();
-            if (txtCarNumber.Text != t12.Text && B5.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            ReservationState();
+            if (resSpot == t12.Text)
+            {
+                MessageBox.Show("예약된 자리입니다.");
+                Yellow();
+            }
+            else if (txtCarNumber.Text != t12.Text && B5.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
             else if (txtCarNumber.Text == t12.Text)
             {
+                strCompare();
                 Blue();
                 B5.Visible = false;
                 PB5.Visible = true;
@@ -600,6 +706,7 @@ namespace ParkingSystem5Team
                 }
                 else
                 {
+                    strCompare();
                     Red();
                     B5.Visible = true;
                     PB5.Visible = false;
@@ -609,10 +716,16 @@ namespace ParkingSystem5Team
 
         private void t12_MouseClick(object sender, MouseEventArgs e) 
         {
-            strCompare();
-            if (txtCarNumber.Text != t13.Text && B6.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            ReservationState();
+            if (resSpot == t13.Text)
+            {
+                MessageBox.Show("예약된 자리입니다.");
+                Yellow();
+            }
+            else if (txtCarNumber.Text != t13.Text && B6.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
             else if (txtCarNumber.Text == t13.Text)
             {
+                strCompare();
                 Blue();
                 B6.Visible = false;
                 PB6.Visible = true;
@@ -624,8 +737,8 @@ namespace ParkingSystem5Team
                 t13.Text = txtCarNumber.Text;
                 if (t13.Text == t1.Text || t13.Text == t2.Text || t13.Text == t3.Text
                     || t13.Text == t4.Text || t13.Text == t5.Text || t13.Text == t6.Text
-                    || t13.Text == t7.Text || t13.Text == t9.Text || t13.Text == t10.Text
-                    || t13.Text == t11.Text || t13.Text == t12.Text || t13.Text == t13.Text
+                    || t13.Text == t7.Text || t13.Text == t8.Text || t13.Text == t9.Text
+                    || t13.Text == t10.Text || t13.Text == t11.Text || t13.Text == t12.Text
                     || t13.Text == t14.Text || t13.Text == t15.Text || t13.Text == t16.Text
                     || t13.Text == t17.Text || t13.Text == t18.Text || t13.Text == t19.Text
                     || t13.Text == t20.Text || t13.Text == t21.Text || t13.Text == t22.Text
@@ -637,6 +750,7 @@ namespace ParkingSystem5Team
                 }
                 else
                 {
+                    strCompare();
                     Red();
                     B6.Visible = true;
                     PB6.Visible = false;
@@ -646,10 +760,16 @@ namespace ParkingSystem5Team
 
         private void t13_MouseClick(object sender, MouseEventArgs e) 
         {
-            strCompare();
-            if (txtCarNumber.Text != t14.Text && B7.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            ReservationState();
+            if (resSpot == t14.Text)
+            {
+                MessageBox.Show("예약된 자리입니다.");
+                Yellow();
+            }
+            else if (txtCarNumber.Text != t14.Text && B7.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
             else if (txtCarNumber.Text == t14.Text)
             {
+                strCompare();
                 Blue();
                 B7.Visible = false;
                 PB7.Visible = true;
@@ -674,6 +794,7 @@ namespace ParkingSystem5Team
                 }
                 else
                 {
+                    strCompare();
                     Red();
                     B7.Visible = true;
                     PB7.Visible = false;
@@ -683,10 +804,16 @@ namespace ParkingSystem5Team
 
         private void t14_MouseClick(object sender, MouseEventArgs e) 
         {
-            strCompare();
-            if (txtCarNumber.Text != t15.Text && C1.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            ReservationState();
+            if (resSpot == t15.Text)
+            {
+                MessageBox.Show("예약된 자리입니다.");
+                Yellow();
+            }
+            else if (txtCarNumber.Text != t15.Text && C1.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
             else if (txtCarNumber.Text == t15.Text)
             {
+                strCompare();
                 Blue();
                 C1.Visible = false;
                 PC1.Visible = true;
@@ -711,6 +838,7 @@ namespace ParkingSystem5Team
                 }
                 else
                 {
+                    strCompare();
                     Red();
                     C1.Visible = true;
                     PC1.Visible = false;
@@ -720,10 +848,16 @@ namespace ParkingSystem5Team
 
         private void t15_MouseClick(object sender, MouseEventArgs e)
         {
-            strCompare();
-            if (txtCarNumber.Text != t16.Text && C2.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            ReservationState();
+            if (resSpot == t16.Text)
+            {
+                MessageBox.Show("예약된 자리입니다.");
+                Yellow();
+            }
+            else if (txtCarNumber.Text != t16.Text && C2.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
             else if (txtCarNumber.Text == t16.Text)
             {
+                strCompare();
                 Blue();
                 C2.Visible = false;
                 PC2.Visible = true;
@@ -748,6 +882,7 @@ namespace ParkingSystem5Team
                 }
                 else
                 {
+                    strCompare();
                     Red();
                     C2.Visible = true;
                     PC2.Visible = false;
@@ -757,10 +892,16 @@ namespace ParkingSystem5Team
 
         private void t16_MouseClick(object sender, MouseEventArgs e)
         {
-            strCompare();
-            if (txtCarNumber.Text != t17.Text && C3.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            ReservationState();
+            if (resSpot == t17.Text)
+            {
+                MessageBox.Show("예약된 자리입니다.");
+                Yellow();
+            }
+            else if (txtCarNumber.Text != t17.Text && C3.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
             else if (txtCarNumber.Text == t17.Text)
             {
+                strCompare();
                 Blue();
                 C3.Visible = false;
                 PC3.Visible = true;
@@ -785,6 +926,7 @@ namespace ParkingSystem5Team
                 }
                 else
                 {
+                    strCompare();
                     Red();
                     C3.Visible = true;
                     PC3.Visible = false;
@@ -794,10 +936,16 @@ namespace ParkingSystem5Team
 
         private void t17_MouseClick(object sender, MouseEventArgs e) 
         {
-            strCompare();
-            if (txtCarNumber.Text != t18.Text && C4.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            ReservationState();
+            if (resSpot == t18.Text)
+            {
+                MessageBox.Show("예약된 자리입니다.");
+                Yellow();
+            }
+            else if (txtCarNumber.Text != t18.Text && C4.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
             else if (txtCarNumber.Text == t18.Text)
             {
+                strCompare();
                 Blue();
                 C4.Visible = false;
                 PC4.Visible = true;
@@ -822,6 +970,7 @@ namespace ParkingSystem5Team
                 }
                 else
                 {
+                    strCompare();
                     Red();
                     C4.Visible = true;
                     PC4.Visible = false;
@@ -831,10 +980,16 @@ namespace ParkingSystem5Team
 
         private void t18_MouseClick(object sender, MouseEventArgs e)
         {
-            strCompare();
-            if (txtCarNumber.Text != t19.Text && C5.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            ReservationState();
+            if (resSpot == t19.Text)
+            {
+                MessageBox.Show("예약된 자리입니다.");
+                Yellow();
+            }
+            else if (txtCarNumber.Text != t19.Text && C5.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
             else if (txtCarNumber.Text == t19.Text)
             {
+                strCompare();
                 Blue();
                 C5.Visible = false;
                 PC5.Visible = true;
@@ -859,6 +1014,7 @@ namespace ParkingSystem5Team
                 }
                 else
                 {
+                    strCompare();
                     Red();
                     C5.Visible = true;
                     PC5.Visible = false;
@@ -868,10 +1024,16 @@ namespace ParkingSystem5Team
 
         private void t19_MouseClick(object sender, MouseEventArgs e)
         {
-            strCompare();
-            if (txtCarNumber.Text != t20.Text && C6.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            ReservationState();
+            if (resSpot == t20.Text)
+            {
+                MessageBox.Show("예약된 자리입니다.");
+                Yellow();
+            }
+            else if (txtCarNumber.Text != t20.Text && C6.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
             else if (txtCarNumber.Text == t20.Text)
             {
+                strCompare();
                 Blue();
                 C6.Visible = false;
                 PC6.Visible = true;
@@ -896,6 +1058,7 @@ namespace ParkingSystem5Team
                 }
                 else
                 {
+                    strCompare();
                     Red();
                     C6.Visible = true;
                     PC6.Visible = false;
@@ -905,10 +1068,16 @@ namespace ParkingSystem5Team
 
         private void t20_MouseClick(object sender, MouseEventArgs e)
         {
-            strCompare();
-            if (txtCarNumber.Text != t21.Text && C7.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            ReservationState();
+            if (resSpot == t21.Text)
+            {
+                MessageBox.Show("예약된 자리입니다.");
+                Yellow();
+            }
+            else if (txtCarNumber.Text != t21.Text && C7.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
             else if (txtCarNumber.Text == t21.Text)
             {
+                strCompare();
                 Blue();
                 C7.Visible = false;
                 PC7.Visible = true;
@@ -933,6 +1102,7 @@ namespace ParkingSystem5Team
                 }
                 else
                 {
+                    strCompare();
                     Red();
                     C7.Visible = true;
                     PC7.Visible = false;
@@ -942,10 +1112,16 @@ namespace ParkingSystem5Team
 
         private void t21_MouseClick(object sender, MouseEventArgs e) 
         {
-            strCompare();
-            if (txtCarNumber.Text != t22.Text && D1.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            ReservationState();
+            if (resSpot == t22.Text)
+            {
+                MessageBox.Show("예약된 자리입니다.");
+                Yellow();
+            }
+            else if (txtCarNumber.Text != t22.Text && D1.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
             else if (txtCarNumber.Text == t22.Text)
             {
+                strCompare();
                 Blue();
                 D1.Visible = false;
                 PD1.Visible = true;
@@ -970,6 +1146,7 @@ namespace ParkingSystem5Team
                 }
                 else
                 {
+                    strCompare();
                     Red();
                     D1.Visible = true;
                     PD1.Visible = false;
@@ -979,10 +1156,16 @@ namespace ParkingSystem5Team
 
         private void t22_MouseClick(object sender, MouseEventArgs e) 
         {
-            strCompare();
-            if (txtCarNumber.Text != t23.Text && D2.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            ReservationState();
+            if (resSpot == t23.Text)
+            {
+                MessageBox.Show("예약된 자리입니다.");
+                Yellow();
+            }
+            else if (txtCarNumber.Text != t23.Text && D2.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
             else if (txtCarNumber.Text == t23.Text)
             {
+                strCompare();
                 Blue();
                 D2.Visible = false;
                 PD2.Visible = true;
@@ -1007,6 +1190,7 @@ namespace ParkingSystem5Team
                 }
                 else
                 {
+                    strCompare();
                     Red();
                     D2.Visible = true;
                     PD2.Visible = false;
@@ -1016,10 +1200,16 @@ namespace ParkingSystem5Team
 
         private void t23_MouseClick(object sender, MouseEventArgs e) 
         {
-            strCompare();
-            if (txtCarNumber.Text != t24.Text && D3.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            ReservationState();
+            if (resSpot == t24.Text)
+            {
+                MessageBox.Show("예약된 자리입니다.");
+                Yellow();
+            }
+            else if (txtCarNumber.Text != t24.Text && D3.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
             else if (txtCarNumber.Text == t24.Text)
             {
+                strCompare();
                 Blue();
                 D3.Visible = false;
                 PD3.Visible = true;
@@ -1044,6 +1234,7 @@ namespace ParkingSystem5Team
                 }
                 else
                 {
+                    strCompare();
                     Red();
                     D3.Visible = true;
                     PD3.Visible = false;
@@ -1053,10 +1244,16 @@ namespace ParkingSystem5Team
 
         private void t24_MouseClick(object sender, MouseEventArgs e)
         {
-            strCompare();
-            if (txtCarNumber.Text != t25.Text && D4.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            ReservationState();
+            if (resSpot == t25.Text)
+            {
+                MessageBox.Show("예약된 자리입니다.");
+                Yellow();
+            }
+            else if (txtCarNumber.Text != t25.Text && D4.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
             else if (txtCarNumber.Text == t25.Text)
             {
+                strCompare();
                 Blue();
                 D4.Visible = false;
                 PD4.Visible = true;
@@ -1081,6 +1278,7 @@ namespace ParkingSystem5Team
                 }
                 else
                 {
+                    strCompare();
                     Red();
                     D4.Visible = true;
                     PD4.Visible = false;
@@ -1090,10 +1288,16 @@ namespace ParkingSystem5Team
 
         private void t25_MouseClick(object sender, MouseEventArgs e)
         {
-            strCompare();
-            if (txtCarNumber.Text != t26.Text && D5.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            ReservationState();
+            if (resSpot == t26.Text)
+            {
+                MessageBox.Show("예약된 자리입니다.");
+                Yellow();
+            }
+            else if (txtCarNumber.Text != t26.Text && D5.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
             else if (txtCarNumber.Text == t26.Text)
             {
+                strCompare();
                 Blue();
                 D5.Visible = false;
                 PD5.Visible = true;
@@ -1118,6 +1322,7 @@ namespace ParkingSystem5Team
                 }
                 else
                 {
+                    strCompare();
                     Red();
                     D5.Visible = true;
                     PD5.Visible = false;
@@ -1127,10 +1332,16 @@ namespace ParkingSystem5Team
 
         private void t26_MouseClick(object sender, MouseEventArgs e)
         {
-            strCompare();
-            if (txtCarNumber.Text != t27.Text && D6.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
+            ReservationState();
+            if (resSpot == t27.Text)
+            {
+                MessageBox.Show("예약된 자리입니다.");
+                Yellow();
+            }
+            else if (txtCarNumber.Text != t27.Text && D6.Visible == true || txtCarNumber.Text == "") MessageBox.Show("주차가 불가능합니다.");
             else if (txtCarNumber.Text == t27.Text)
             {
+                strCompare();
                 Blue();
                 D6.Visible = false;
                 PD6.Visible = true;
@@ -1155,6 +1366,7 @@ namespace ParkingSystem5Team
                 }
                 else
                 {
+                    strCompare();
                     Red();
                     D6.Visible = true;
                     PD6.Visible = false;
@@ -1164,10 +1376,16 @@ namespace ParkingSystem5Team
 
         private void t27_MouseClick(object sender, MouseEventArgs e)
         {
-            strCompare();
-            if (txtCarNumber.Text != t28.Text && D7.Visible == true || txtCarNumber.Text == "") MessageBox.Show("차량 번호를 입력해주세요.");
+            ReservationState();
+            if (resSpot == t28.Text)
+            {
+                MessageBox.Show("예약된 자리입니다.");
+                Yellow();
+            }
+            else if (txtCarNumber.Text != t28.Text && D7.Visible == true || txtCarNumber.Text == "") MessageBox.Show("차량 번호를 입력해주세요.");
             else if (txtCarNumber.Text == t28.Text)
             {
+                strCompare();
                 Blue();
                 D7.Visible = false;
                 PD7.Visible = true;
@@ -1192,6 +1410,7 @@ namespace ParkingSystem5Team
                 }
                 else
                 {
+                    strCompare();
                     Red();
                     D7.Visible = true;
                     PD7.Visible = false;
@@ -1202,13 +1421,20 @@ namespace ParkingSystem5Team
         private void t_MouseHover(object sender, EventArgs e)
         {
             White();
-            if (A1.Visible == true)
+
+            ReservationState();
+
+            if (A1.Visible == true && resSpot != t1.Text)
             {
                 RedBox.BackColor = Color.Red;
             }
-            else if (A1.Visible == false)
+            else if (A1.Visible == false && resSpot != t1.Text)
             {
                 BlueBox.BackColor = Color.Blue;
+            }
+            else if(A1.Visible == false && resSpot == t1.Text)
+            {
+                YellowBox.BackColor = Color.Yellow;
             }
         }
 
@@ -1216,13 +1442,19 @@ namespace ParkingSystem5Team
         {
             White();
 
-            if (A2.Visible == true)
+            ReservationState();
+
+            if (A2.Visible == true && resSpot != t2.Text)
             {
                 RedBox.BackColor = Color.Red;
             }
-            else if (A2.Visible == false)
+            else if (A2.Visible == false && resSpot != t2.Text)
             {
                 BlueBox.BackColor = Color.Blue;
+            }
+            else if (A2.Visible == false && resSpot == t2.Text)
+            {
+                YellowBox.BackColor = Color.Yellow;
             }
         }
 
@@ -1230,13 +1462,19 @@ namespace ParkingSystem5Team
         {
             White();
 
-            if (A3.Visible == true)
+            ReservationState();
+
+            if (A3.Visible == true && resSpot != t3.Text)
             {
                 RedBox.BackColor = Color.Red;
             }
-            else if (A3.Visible == false)
+            else if (A3.Visible == false && resSpot != t3.Text)
             {
                 BlueBox.BackColor = Color.Blue;
+            }
+            else if (A3.Visible == false && resSpot == t3.Text)
+            {
+                YellowBox.BackColor = Color.Yellow;
             }
         }
 
@@ -1244,13 +1482,19 @@ namespace ParkingSystem5Team
         {
             White();
 
-            if (A4.Visible == true)
+            ReservationState();
+
+            if (A4.Visible == true && resSpot != t4.Text)
             {
                 RedBox.BackColor = Color.Red;
             }
-            else if (A4.Visible == false)
+            else if (A4.Visible == false && resSpot != t4.Text)
             {
                 BlueBox.BackColor = Color.Blue;
+            }
+            else if (A4.Visible == false && resSpot == t4.Text)
+            {
+                YellowBox.BackColor = Color.Yellow;
             }
         }
 
@@ -1258,13 +1502,19 @@ namespace ParkingSystem5Team
         {
             White();
 
-            if (A5.Visible == true)
+            ReservationState();
+
+            if (A5.Visible == true && resSpot != t5.Text)
             {
                 RedBox.BackColor = Color.Red;
             }
-            else if (A5.Visible == false)
+            else if (A5.Visible == false && resSpot != t5.Text)
             {
                 BlueBox.BackColor = Color.Blue;
+            }
+            else if (A5.Visible == false && resSpot == t5.Text)
+            {
+                YellowBox.BackColor = Color.Yellow;
             }
         }
 
@@ -1272,13 +1522,19 @@ namespace ParkingSystem5Team
         {
             White();
 
-            if (A6.Visible == true)
+            ReservationState();
+
+            if (A6.Visible == true && resSpot != t6.Text)
             {
                 RedBox.BackColor = Color.Red;
             }
-            else if (A6.Visible == false)
+            else if (A6.Visible == false && resSpot != t6.Text)
             {
                 BlueBox.BackColor = Color.Blue;
+            }
+            else if (A6.Visible == false && resSpot == t6.Text)
+            {
+                YellowBox.BackColor = Color.Yellow;
             }
         }
 
@@ -1286,13 +1542,19 @@ namespace ParkingSystem5Team
         {
             White();
 
-            if (A7.Visible == true)
+            ReservationState();
+
+            if (A7.Visible == true && resSpot != t7.Text)
             {
                 RedBox.BackColor = Color.Red;
             }
-            else if (A7.Visible == false)
+            else if (A7.Visible == false && resSpot != t7.Text)
             {
                 BlueBox.BackColor = Color.Blue;
+            }
+            else if (A7.Visible == false && resSpot == t7.Text)
+            {
+                YellowBox.BackColor = Color.Yellow;
             }
         }
 
@@ -1300,13 +1562,19 @@ namespace ParkingSystem5Team
         {
             White();
 
-            if (B1.Visible == true)
+            ReservationState();
+
+            if (B1.Visible == true && resSpot != t8.Text)
             {
                 RedBox.BackColor = Color.Red;
             }
-            else if (B1.Visible == false)
+            else if (B1.Visible == false && resSpot != t8.Text)
             {
                 BlueBox.BackColor = Color.Blue;
+            }
+            else if (B1.Visible == false && resSpot == t8.Text)
+            {
+                YellowBox.BackColor = Color.Yellow;
             }
         }
 
@@ -1314,13 +1582,19 @@ namespace ParkingSystem5Team
         {
             White();
 
-            if (B2.Visible == true)
+            ReservationState();
+
+            if (B2.Visible == true && resSpot != t9.Text)
             {
                 RedBox.BackColor = Color.Red;
             }
-            else if (B2.Visible == false)
+            else if (B2.Visible == false && resSpot != t9.Text)
             {
                 BlueBox.BackColor = Color.Blue;
+            }
+            else if (B2.Visible == false && resSpot == t9.Text)
+            {
+                YellowBox.BackColor = Color.Yellow;
             }
         }
 
@@ -1328,13 +1602,19 @@ namespace ParkingSystem5Team
         {
             White();
 
-            if (B3.Visible == true)
+            ReservationState();
+
+            if (B3.Visible == true && resSpot != t10.Text)
             {
                 RedBox.BackColor = Color.Red;
             }
-            else if (B3.Visible == false)
+            else if (B3.Visible == false && resSpot != t10.Text)
             {
                 BlueBox.BackColor = Color.Blue;
+            }
+            else if (B3.Visible == false && resSpot == t10.Text)
+            {
+                YellowBox.BackColor = Color.Yellow;
             }
         }
 
@@ -1342,13 +1622,19 @@ namespace ParkingSystem5Team
         {
             White();
 
-            if (B4.Visible == true)
+            ReservationState();
+
+            if (B4.Visible == true && resSpot != t11.Text)
             {
                 RedBox.BackColor = Color.Red;
             }
-            else if (B4.Visible == false)
+            else if (B4.Visible == false && resSpot != t11.Text)
             {
                 BlueBox.BackColor = Color.Blue;
+            }
+            else if (B4.Visible == false && resSpot == t11.Text)
+            {
+                YellowBox.BackColor = Color.Yellow;
             }
         }
 
@@ -1356,13 +1642,19 @@ namespace ParkingSystem5Team
         {
             White();
 
-            if (B5.Visible == true)
+            ReservationState();
+
+            if (B5.Visible == true && resSpot != t12.Text)
             {
                 RedBox.BackColor = Color.Red;
             }
-            else if (B5.Visible == false)
+            else if (B5.Visible == false && resSpot != t12.Text)
             {
                 BlueBox.BackColor = Color.Blue;
+            }
+            else if (B5.Visible == false && resSpot == t12.Text)
+            {
+                YellowBox.BackColor = Color.Yellow;
             }
         }
 
@@ -1370,13 +1662,19 @@ namespace ParkingSystem5Team
         {
             White();
 
-            if (B6.Visible == true)
+            ReservationState();
+
+            if (B6.Visible == true && resSpot != t13.Text)
             {
                 RedBox.BackColor = Color.Red;
             }
-            else if (B6.Visible == false)
+            else if (B6.Visible == false && resSpot != t13.Text)
             {
                 BlueBox.BackColor = Color.Blue;
+            }
+            else if (B6.Visible == false && resSpot == t13.Text)
+            {
+                YellowBox.BackColor = Color.Yellow;
             }
         }
 
@@ -1384,13 +1682,19 @@ namespace ParkingSystem5Team
         {
             White();
 
-            if (B7.Visible == true)
+            ReservationState();
+
+            if (B7.Visible == true && resSpot != t14.Text)
             {
                 RedBox.BackColor = Color.Red;
             }
-            else if (B7.Visible == false)
+            else if (B7.Visible == false && resSpot != t14.Text)
             {
                 BlueBox.BackColor = Color.Blue;
+            }
+            else if (B7.Visible == false && resSpot == t14.Text)
+            {
+                YellowBox.BackColor = Color.Yellow;
             }
         }
 
@@ -1398,13 +1702,19 @@ namespace ParkingSystem5Team
         {
             White();
 
-            if (C1.Visible == true)
+            ReservationState();
+
+            if (C1.Visible == true && resSpot != t15.Text)
             {
                 RedBox.BackColor = Color.Red;
             }
-            else if (C1.Visible == false)
+            else if (C1.Visible == false && resSpot != t15.Text)
             {
                 BlueBox.BackColor = Color.Blue;
+            }
+            else if (C1.Visible == false && resSpot == t15.Text)
+            {
+                YellowBox.BackColor = Color.Yellow;
             }
         }
 
@@ -1412,13 +1722,19 @@ namespace ParkingSystem5Team
         {
             White();
 
-            if (C2.Visible == true)
+            ReservationState();
+
+            if (C2.Visible == true && resSpot != t16.Text)
             {
                 RedBox.BackColor = Color.Red;
             }
-            else if (C2.Visible == false)
+            else if (C2.Visible == false && resSpot != t16.Text)
             {
                 BlueBox.BackColor = Color.Blue;
+            }
+            else if (C2.Visible == false && resSpot == t16.Text)
+            {
+                YellowBox.BackColor = Color.Yellow;
             }
         }
 
@@ -1426,13 +1742,19 @@ namespace ParkingSystem5Team
         {
             White();
 
-            if (C3.Visible == true)
+            ReservationState();
+
+            if (C3.Visible == true && resSpot != t17.Text)
             {
                 RedBox.BackColor = Color.Red;
             }
-            else if (C3.Visible == false)
+            else if (C3.Visible == false && resSpot != t17.Text)
             {
                 BlueBox.BackColor = Color.Blue;
+            }
+            else if (C3.Visible == false && resSpot == t17.Text)
+            {
+                YellowBox.BackColor = Color.Yellow;
             }
         }
 
@@ -1440,13 +1762,19 @@ namespace ParkingSystem5Team
         {
             White();
 
-            if (C4.Visible == true)
+            ReservationState();
+
+            if (C4.Visible == true && resSpot != t18.Text)
             {
                 RedBox.BackColor = Color.Red;
             }
-            else if (C4.Visible == false)
+            else if (C4.Visible == false && resSpot != t18.Text)
             {
                 BlueBox.BackColor = Color.Blue;
+            }
+            else if (C4.Visible == false && resSpot == t18.Text)
+            {
+                YellowBox.BackColor = Color.Yellow;
             }
         }
 
@@ -1454,13 +1782,19 @@ namespace ParkingSystem5Team
         {
             White();
 
-            if (C5.Visible == true)
+            ReservationState();
+
+            if (C5.Visible == true && resSpot != t19.Text)
             {
                 RedBox.BackColor = Color.Red;
             }
-            else if (C5.Visible == false)
+            else if (C5.Visible == false && resSpot != t19.Text)
             {
                 BlueBox.BackColor = Color.Blue;
+            }
+            else if (C5.Visible == false && resSpot == t19.Text)
+            {
+                YellowBox.BackColor = Color.Yellow;
             }
         }
 
@@ -1468,13 +1802,19 @@ namespace ParkingSystem5Team
         {
             White();
 
-            if (C6.Visible == true)
+            ReservationState();
+
+            if (C6.Visible == true && resSpot != t20.Text)
             {
                 RedBox.BackColor = Color.Red;
             }
-            else if (C6.Visible == false)
+            else if (C6.Visible == false && resSpot != t20.Text)
             {
                 BlueBox.BackColor = Color.Blue;
+            }
+            else if (C6.Visible == false && resSpot == t20.Text)
+            {
+                YellowBox.BackColor = Color.Yellow;
             }
         }
 
@@ -1482,13 +1822,19 @@ namespace ParkingSystem5Team
         {
             White();
 
-            if (C7.Visible == true)
+            ReservationState();
+
+            if (C7.Visible == true && resSpot != t21.Text)
             {
                 RedBox.BackColor = Color.Red;
             }
-            else if (C7.Visible == false)
+            else if (C7.Visible == false && resSpot != t21.Text)
             {
                 BlueBox.BackColor = Color.Blue;
+            }
+            else if (C7.Visible == false && resSpot == t21.Text)
+            {
+                YellowBox.BackColor = Color.Yellow;
             }
         }
 
@@ -1496,13 +1842,19 @@ namespace ParkingSystem5Team
         {
             White();
 
-            if (D1.Visible == true)
+            ReservationState();
+
+            if (D1.Visible == true && resSpot != t22.Text)
             {
                 RedBox.BackColor = Color.Red;
             }
-            else if (D1.Visible == false)
+            else if (D1.Visible == false && resSpot != t22.Text)
             {
                 BlueBox.BackColor = Color.Blue;
+            }
+            else if (D1.Visible == false && resSpot == t22.Text)
+            {
+                YellowBox.BackColor = Color.Yellow;
             }
         }
 
@@ -1510,13 +1862,19 @@ namespace ParkingSystem5Team
         {
             White();
 
-            if (D2.Visible == true)
+            ReservationState();
+
+            if (D2.Visible == true && resSpot != t23.Text)
             {
                 RedBox.BackColor = Color.Red;
             }
-            else if (D2.Visible == false)
+            else if (D2.Visible == false && resSpot != t23.Text)
             {
                 BlueBox.BackColor = Color.Blue;
+            }
+            else if (D2.Visible == false && resSpot == t23.Text)
+            {
+                YellowBox.BackColor = Color.Yellow;
             }
         }
 
@@ -1524,13 +1882,19 @@ namespace ParkingSystem5Team
         {
             White();
 
-            if (D3.Visible == true)
+            ReservationState();
+
+            if (D3.Visible == true && resSpot != t24.Text)
             {
                 RedBox.BackColor = Color.Red;
             }
-            else if (D3.Visible == false)
+            else if (D3.Visible == false && resSpot != t24.Text)
             {
                 BlueBox.BackColor = Color.Blue;
+            }
+            else if (D3.Visible == false && resSpot == t24.Text)
+            {
+                YellowBox.BackColor = Color.Yellow;
             }
         }
 
@@ -1538,13 +1902,19 @@ namespace ParkingSystem5Team
         {
             White();
 
-            if (D4.Visible == true)
+            ReservationState();
+
+            if (D4.Visible == true && resSpot != t25.Text)
             {
                 RedBox.BackColor = Color.Red;
             }
-            else if (D4.Visible == false)
+            else if (D4.Visible == false && resSpot != t25.Text)
             {
                 BlueBox.BackColor = Color.Blue;
+            }
+            else if (D4.Visible == false && resSpot == t25.Text)
+            {
+                YellowBox.BackColor = Color.Yellow;
             }
         }
 
@@ -1552,13 +1922,19 @@ namespace ParkingSystem5Team
         {
             White();
 
-            if (D5.Visible == true)
+            ReservationState();
+
+            if (D5.Visible == true && resSpot != t26.Text)
             {
                 RedBox.BackColor = Color.Red;
             }
-            else if (D5.Visible == false)
+            else if (D5.Visible == false && resSpot != t26.Text)
             {
                 BlueBox.BackColor = Color.Blue;
+            }
+            else if (D5.Visible == false && resSpot == t26.Text)
+            {
+                YellowBox.BackColor = Color.Yellow;
             }
         }
 
@@ -1566,13 +1942,19 @@ namespace ParkingSystem5Team
         {
             White();
 
-            if (D6.Visible == true)
+            ReservationState();
+
+            if (D6.Visible == true && resSpot != t27.Text)
             {
                 RedBox.BackColor = Color.Red;
             }
-            else if (D6.Visible == false)
+            else if (D6.Visible == false && resSpot != t27.Text)
             {
                 BlueBox.BackColor = Color.Blue;
+            }
+            else if (D6.Visible == false && resSpot == t27.Text)
+            {
+                YellowBox.BackColor = Color.Yellow;
             }
         }
 
@@ -1580,13 +1962,19 @@ namespace ParkingSystem5Team
         {
             White();
 
-            if (D7.Visible == true)
+            ReservationState();
+
+            if (D7.Visible == true && resSpot != t28.Text)
             {
                 RedBox.BackColor = Color.Red;
             }
-            else if (D7.Visible == false)
+            else if (D7.Visible == false && resSpot != t28.Text)
             {
                 BlueBox.BackColor = Color.Blue;
+            }
+            else if (D7.Visible == false && resSpot == t28.Text)
+            {
+                YellowBox.BackColor = Color.Yellow;
             }
         }
 
